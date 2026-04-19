@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerald Valencia - Resume</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* ── PROFESSIONAL NAVY & GOLD PALETTE ── */
+            --primary-dark: #0f2b3c;
+            --primary: #153d52;
+            --primary-mid: #1a5276;
+            --primary-light: #2471a3;
+            --accent-gold: #c8a84e;
+            --accent-gold-light: #e8d28a;
+            --accent-gold-dark: #a68a3e;
+            --bg-cream: #faf9f6;
+            --bg-sidebar: #f0f4f7;
+            --bg-sidebar-alt: #e8eef3;
+            --text-dark: #1a1a1a;
+            --text-body: #2c2c2c;
+            --text-muted: #5a6670;
+            --text-light: #7a8a96;
+            --border-subtle: #d5dde3;
+            --white: #ffffff;
+            --success: #27ae60;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eaa 0%, #0f2027 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+            color: var(--text-body);
+        }
+
+        /* ══════════════════════════════════════ */
+        /*            DOWNLOAD BUTTON             */
+        /* ══════════════════════════════════════ */
+        .controls {
+            margin-bottom: 25px;
+            display: flex;
+            gap: 12px;
+        }
+
+        button {
+            padding: 14px 32px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(200, 168, 78, 0.4), 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(200, 168, 78, 0.5), 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        button i {
+            font-size: 16px;
+        }
+
+        /* ══════════════════════════════════════ */
+        /*           RESUME CONTAINER             */
+        /* ══════════════════════════════════════ */
+        .resume-wrapper {
+            width: 210mm;
+            min-height: 297mm;
+            background: var(--white);
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        /* ══════════════════════════════════════ */
+        /*               HEADER                   */
+        /* ══════════════════════════════════════ */
+        .header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-mid) 100%);
+            padding: 0;
+            display: flex;
+            align-items: stretch;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle geometric pattern overlay */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(200,168,78,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: 20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .header-left {
+            flex: 1;
+            padding: 28px 0 28px 30px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-left h1 {
+            color: var(--white);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 36px;
+            line-height: 1.05;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header-left p {
+            color: var(--accent-gold-light);
+            font-size: 12.5px;
+            margin-top: 6px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .header-center {
+            display: flex;
+            align-items: center;
+            padding: 20px 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img-wrapper {
+            position: relative;
+        }
+
+        .profile-img-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light), var(--accent-gold));
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--white);
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .header-right {
+            flex: 1;
+            font-size: 10.5px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.8;
+            padding: 20px 25px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .contact-item i {
+            color: var(--accent-gold);
+            width: 16px;
+            text-align: center;
+            font-size: 11px;
+            flex-shrink: 0;
+        }
+
+        .header-right a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .header-right a:hover {
+            color: var(--accent-gold-light);
+        }
+
+        /* ── GOLD ACCENT BAR ── */
+        .gold-bar {
+            height: 4px;
+            background: linear-gradient(90deg,
+                var(--accent-gold-dark),
+                var(--accent-gold),
+                var(--accent-gold-light),
+                var(--accent-gold),
+                var(--accent-gold-dark)
+            );
+            box-shadow: 0 2px 8px rgba(200,168,78,0.3);
+        }
+
+        /* ══════════════════════════════════════ */
+        /*          TWO-COLUMN LAYOUT             */
+        /* ══════════════════════════════════════ */
+        .main-content {
+            display: flex;
+            flex: 1;
+        }
+
+        .left-column {
+            width: 63%;
+            padding: 22px 25px 25px 30px;
+            background: var(--white);
+        }
+
+        .right-column {
+            width: 37%;
+            padding: 22px 22px 25px 22px;
+            background: linear-gradient(180deg, var(--bg-sidebar) 0%, var(--bg-sidebar-alt) 100%);
+            border-left: 1px solid var(--border-subtle);
+            position: relative;
+        }
+
+        /* Decorative sidebar accent line */
+        .right-column::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg,
+                var(--accent-gold),
+                var(--primary-light),
+                var(--accent-gold)
+            );
+        }
+
+        /* ══════════════════════════════════════ */
+        /*           SECTION HEADINGS             */
+        /* ══════════════════════════════════════ */
+        h2 {
+            color: var(--primary-dark);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2.5px solid var(--accent-gold);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Subtle double-line effect */
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 40px;
+            height: 2.5px;
+            background: var(--primary-mid);
+        }
+
+        .right-column h2 {
+            color: var(--primary-dark);
+            display: block;
+            border-bottom: 2.5px solid var(--accent-gold);
+        }
+
+        .right-column h2::after {
+            width: 30px;
+        }
+
+        /* ══════════════════════════════════════ */
+        /*          LEFT COLUMN CONTENT           */
+        /* ══════════════════════════════════════ */
+        .item {
+            margin-bottom: 14px;
+            padding-left: 12px;
+            border-left: 2px solid transparent;
+            transition: border-color 0.3s;
+            position: relative;
+        }
+
+        .item:hover {
+            border-left-color: var(--accent-gold);
+        }
+
+        /* Timeline dot */
+        .item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            border: 2px solid var(--white);
+            box-shadow: 0 0 0 1px var(--primary-light);
+        }
+
+        .item-title {
+            font-weight: 700;
+            font-size: 11.5px;
+            color: var(--primary-dark);
+            line-height: 1.4;
+        }
+
+        .item-title .highlight {
+            color: var(--primary-light);
+        }
+
+        .item-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 1px;
+            margin-bottom: 3px;
+            font-weight: 500;
+        }
+
+        .item-date {
+            font-size: 10.5px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .item-date::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 1px;
+            background: var(--accent-gold);
+        }
+
+        ul {
+            padding-left: 18px;
+            font-size: 10.5px;
+            color: var(--text-body);
+            line-height: 1.5;
+        }
+
+        li {
+            margin-bottom: 3px;
+            position: relative;
+        }
+
+        li::marker {
+            color: var(--primary-light);
+        }
+
+        /* ══════════════════════════════════════ */
+        /*         RIGHT COLUMN CONTENT           */
+        /* ══════════════════════════════════════ */
+        .skill-group {
+            margin-bottom: 14px;
+            padding: 10px 12px;
+            background: var(--white);
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+        }
+
+        .skill-group:hover {
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            border-color: var(--accent-gold);
+        }
+
+        .skill-title {
+            font-weight: 700;
+            font-size: 11px;
+            color: var(--primary-dark);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .skill-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-gold);
+            border-radius: 1px;
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
+
+        .skill-desc {
+            font-size: 10px;
+            line-height: 1.5;
+            color: var(--text-muted);
+            padding-left: 12px;
+        }
+
+        /* ══════════════════════════════════════ */
+        /*          SECTION SPACING               */
+        /* ══════════════════════════════════════ */
+        .section-spacer {
+            margin-top: 20px;
+        }
+
+        .section-spacer-sm {
+            margin-top: 14px;
+        }
+
+        /* ══════════════════════════════════════ */
+        /*         EDUCATION SPECIAL              */
+        /* ══════════════════════════════════════ */
+        .edu-item {
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            background: linear-gradient(135deg, rgba(21,61,82,0.03), rgba(200,168,78,0.05));
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-light);
+        }
+
+        .edu-item .item-title {
+            font-size: 11.5px;
+        }
+
+        .edu-item .item-subtitle {
+            font-size: 10.5px;
+        }
+
+        /* ══════════════════════════════════════ */
+        /*           CERT BADGE STYLE             */
+        /* ══════════════════════════════════════ */
+        .cert-group {
+            margin-bottom: 14px;
+            padding: 10px 12px;
+            background: var(--white);
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-group::after {
+            content: '✓';
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            color: var(--success);
+            font-size: 10px;
+            font-weight: 700;
+            opacity: 0.6;
+        }
+
+        .cert-group .skill-title {
+            color: var(--primary-mid);
+        }
+
+        .cert-group .skill-desc {
+            font-size: 10px;
+        }
+
+        /* ══════════════════════════════════════ */
+        /*             FOOTER BAR                 */
+        /* ══════════════════════════════════════ */
+        .footer-bar {
+            height: 6px;
+            background: linear-gradient(90deg,
+                var(--primary-dark),
+                var(--primary),
+                var(--accent-gold),
+                var(--primary),
+                var(--primary-dark)
+            );
+        }
+
+        /* ══════════════════════════════════════ */
+        /*            PRINT STYLES                */
+        /* ══════════════════════════════════════ */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .controls {
+                display: none !important;
+            }
+            .resume-wrapper {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            .resume-wrapper {
+                width: 100%;
+                min-height: auto;
+            }
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-left {
+                flex-direction: column;
+                padding: 20px;
+            }
+            .header-right {
+                padding: 15px 20px;
+            }
+            .main-content {
+                flex-direction: column;
+            }
+            .left-column, .right-column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button onclick="generatePDF()">
+            <i class="fas fa-file-pdf"></i> Download as PDF
+        </button>
+    </div>
+
+    <div class="resume-wrapper" id="resume">
+
+        <!-- ═══════ HEADER ═══════ -->
+        <div class="header">
+            <div class="header-left">
+                <div class="profile-img-wrapper">
+                    <img src="./geropic.png" alt="Profile Photo" class="profile-img">
+                </div>
+                <div>
+                    <h1>GERALD<br>VALENCIA</h1>
+                    <p>Lead Developer &amp; Mathematics Educator</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>09510930117</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:gerald.valencia@deped.gov.ph">gerald.valencia@deped.gov.ph</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <a href="https://gero-portfolio.vercel.app/" target="_blank">gero-portfolio.vercel.app</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/gerald-valencia-513105216" target="_blank">linkedin.com/in/gerald-valencia-513105216</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/LPEastHub" target="_blank">github.com/LPEastHub</a>
+                </div>
+            </div>
+        </div>
+        <div class="gold-bar"></div>
+
+        <!-- ═══════ BODY ═══════ -->
+        <div class="main-content">
+
+            <!-- ── LEFT COLUMN ── -->
+            <div class="left-column">
+
+                <h2>Project Experience</h2>
+
+                <div class="item">
+                    <div class="item-title">Project LASER | Lead Developer (School Management System)</div>
+                    <div class="item-subtitle">Las Piñas East National High School</div>
+                    <ul>
+                        <li>Developed a comprehensive school management system for Las Piñas East National High School.</li>
+                        <li>Optimized administrative workflows, functioning similarly to a localized enterprise resource planning (ERP) tool.</li>
+                    </ul>
+                </div>
+
+                <div class="item">
+                    <div class="item-title">Digital Learning Resource Center | Full-stack Developer</div>
+                    <ul>
+                        <li>Created a centralized management system for educational resources to improve accessibility for students and faculty.</li>
+                        <li>Designed a responsive user interface ensuring an optimal viewing experience across all devices.</li>
+                    </ul>
+                </div>
+
+                <h2 class="section-spacer">Work Experience</h2>
+
+                <div class="item">
+                    <div class="item-title">Teacher 1 (Mathematics) | Las Piñas East National High School</div>
+                    <div class="item-date">August 2023 – May 2026</div>
+                    <ul>
+                        <li>Spearheaded the development of school-wide digital management systems, including Project LASER.</li>
+                        <li>Integrated digital tools into the mathematics curriculum to enhance student engagement.</li>
+                        <li>Managed student data and performance metrics with high accuracy.</li>
+                    </ul>
+                </div>
+
+                <div class="item">
+                    <div class="item-title">General Education Instructor | Saint Francis of Assisi College</div>
+                    <div class="item-date">February 2025 – December 2025</div>
+                    <ul>
+                        <li>Facilitated comprehensive general education courses for diverse student groups.</li>
+                        <li>Assessed student progress through structured testing and fostered an interactive learning environment.</li>
+                    </ul>
+                </div>
+
+                <div class="item">
+                    <div class="item-title">AI Trainer (Mathematics) | Outlier.ai</div>
+                    <div class="item-date">August 2024 – December 2024</div>
+                    <ul>
+                        <li>Trained and evaluated AI models on complex mathematical concepts and problem-solving reasoning.</li>
+                        <li>Verified generated outputs for accuracy, logical consistency, and step-by-step mathematical proofs.</li>
+                    </ul>
+                </div>
+
+                <div class="item">
+                    <div class="item-title">Mathematics Online Tutor | Entheon Institute</div>
+                    <div class="item-date">June 2023 – May 2024</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-title">Highschool Mathematics Teacher | Grace Christian College</div>
+                    <div class="item-date">August 2019 – June 2023</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-title">College Instructor | Asian College</div>
+                    <div class="item-date">June 2016 – May 2019</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-title">Data Engineering Associate | Evolve Discovery</div>
+                    <div class="item-date">May 2015 – May 2016</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-title">General Education Instructor | Asian Institute of Computer Studies</div>
+                    <div class="item-date">June 2009 – May 2015</div>
+                </div>
+
+                <h2 class="section-spacer">Education</h2>
+
+                <div class="edu-item">
+                    <div class="item-title">Master of Arts in Education, Major in Mathematics</div>
+                    <div class="item-subtitle">University of Perpetual Help System Dalta | Jan 2026 – Present</div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="item-title">Bachelor of Science in Mathematics</div>
+                    <div class="item-subtitle">Polytechnic University of the Philippines | June 2005 – Dec 2009</div>
+                </div>
+
+            </div>
+
+            <!-- ── RIGHT COLUMN ── -->
+            <div class="right-column">
+
+                <h2>Skills Summary</h2>
+
+                <div class="skill-group">
+                    <div class="skill-title">Web Development</div>
+                    <div class="skill-desc">HTML5, CSS3, JavaScript, Responsive Web Design, Node.js, Express.js, MongoDB, React.js, Vue.js.</div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-title">Mathematics &amp; Analytics</div>
+                    <div class="skill-desc">Advanced Mathematics, Statistical Analysis, Logic.</div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-title">Tools &amp; Technologies</div>
+                    <div class="skill-desc">Git, Github, Version Control, AI models (Gemini, Claude, ChatGPT), Microsoft Office Suite, Google Workspace.</div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-title">Soft Skills</div>
+                    <div class="skill-desc">Leadership, Analytical Problem Solving, Project Management, Decision Making.</div>
+                </div>
+
+                <h2 class="section-spacer">Certifications &amp; Affiliations</h2>
+
+                <div class="cert-group">
+                    <div class="skill-title">Data Science &amp; Analytics</div>
+                    <div class="skill-desc">Data Analytics Essential (2026) &amp; Introduction to Data Science (2026) – Cisco Networking Academy.</div>
+                </div>
+
+                <div class="cert-group">
+                    <div class="skill-title">Development</div>
+                    <div class="skill-desc">Responsive Web Design – freeCodeCamp (May 2024) | Full-Stack Web Development Bootcamp – Udemy (May 2023).</div>
+                </div>
+
+                <div class="cert-group">
+                    <div class="skill-title">Professional</div>
+                    <div class="skill-desc">Licensed Professional Teacher – PRC (September 2017).</div>
+                </div>
+
+                <div class="cert-group">
+                    <div class="skill-title">Memberships</div>
+                    <div class="skill-desc">Philippine Statistics Authority Inc. (March 2026) | Educators Research and Innovation Organization (ERIO) Inc. (February 2026).</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bar"></div>
+    </div>
+
+    <script>
+        function generatePDF() {
+            const btn = document.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+            btn.disabled = true;
+
+            const element = document.getElementById('resume');
+
+            const opt = {
+                margin:       0,
+                filename:     'Gerald_Valencia_Resume.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  {
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true,
+                    logging: false
+                },
+                jsPDF:        {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                },
+                pagebreak:    {
+                    mode: ['avoid-all', 'css', 'legacy']
+                }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 2000);
+            }).catch(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                alert('Error generating PDF. Please try again.');
+            });
+        }
+    </script>
+
+</body>
+</html>
